@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get('/', async (req, res, next) => {
     let result = await Chat.findAll({
+        limit: 50,
         order: [
             ['id', 'DESC'],
         ]
