@@ -112,3 +112,12 @@ html, body {
 .received .message {
     background: #fff;
 }
+
+.preview {
+    background-color: #b2c7d9;
+    color: #fff;
+    padding: 15px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
