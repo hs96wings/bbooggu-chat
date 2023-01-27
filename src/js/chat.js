@@ -38,11 +38,6 @@ function LiModel(name, msg, time) {
     this.msg = msg;
     this.time = time;
 
-    if (name == undefined || name == null || name == "")
-        this.name = "뿌요미";
-    if (msg === undefined || msg == null || msg == "")
-        this.msg = "뿌꾸 사랑해";
-
     this.makeLi = () => {
         const li = document.createElement("li");
         li.classList.add(nickname.value === this.name ? "sent" : "received")

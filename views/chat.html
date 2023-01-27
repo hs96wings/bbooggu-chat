@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+</head>
+<body>
+    {% if chats %}
+    <table>
+    {% for chat in chats %}
+        <tr>
+            <td>{{chat.id}}</td>
+            <td>{{chat.name}}</td>
+            <td>{{chat.msg}}</td>
+            <td>{{chat.time}}</td>
+        </tr>
+    {% endfor %}
+    </table> 
+    {% endif %}
+</body>
+</html>

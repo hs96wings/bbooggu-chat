@@ -17,11 +17,15 @@
   },
   "homepage": "https://github.com/hs96wings/bbooggu-chat#readme",
   "dependencies": {
+    "chokidar": "^3.5.3",
+    "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.40",
+    "morgan": "^1.10.0",
     "mysql2": "^3.0.1",
+    "nunjucks": "^3.2.3",
     "sequelize": "^6.28.0",
     "socket.io": "^4.5.4"
   }

@@ -1,26 +1,45 @@
 const express = require('express')
 const http = require('http')
-const app = express();
-const router = express.Router()
 const path = require('path')
-const server = http.createServer(app);
 const socketIO = require('socket.io')
 const moment = require('moment')
+const nunjucks = require('nunjucks')
 
+const { sequelize, Chat } = require('./models');
 const chatRouter = require('./routes/chat');
 const imageRouter = require('./routes/image');
 
 require('moment-timezone')
 moment.tz.setDefault('Asia/Seoul');
 
+const app = express();
+const server = http.createServer(app);
 const io = socketIO(server);
-const PORT = process.env.PORT || 5000;
-
-app.set('view engine', 'ejs')
-app.engine('html', require('ejs').renderFile)
+app.set('port', process.env.PORT || 5000);
+app.set('view engine', 'html')
+nunjucks.configure('views', {
+    express:app,
+    watch: true,
+});
+sequelize.sync({ force: false })
+    .then(() => {
+        console.log('DB 연결 성공');
+    })
+    .catch((err) => {
+        console.error(err);
+    });
 app.use(express.static(path.join(__dirname, "src")))
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 app.use('/chat', chatRouter);
 app.use('/image', imageRouter);
+
+app.use((req, res, next) => {
+    const error = new Error(`${req.method} ${req.url} X`);
+    error.status = 404;
+    next(error);
+})
 
 app.use((err, req, res, next) => {
     res.locals.message = err.message;
@@ -32,13 +51,32 @@ app.use((err, req, res, next) => {
 
 io.on("connection", (socket) => {
     socket.on("chatting", (data) => {
-        const { name, msg } = data;
+        var { name, msg } = data;
+        const time = moment(new Date()).format("h:mm A");
+        
+        if (name === undefined || name == null || name == '')
+            name = '뿌요미';
+        if (msg === undefined || msg == null || msg == '')
+            msg = '뿌꾸 사랑해';
+
+        Chat.create({
+            name,
+            msg,
+            time
+        })
+        .then((result) => {
+            console.log(result);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+
         io.emit("chatting", {
             name,
             msg,
-            time: moment(new Date()).format("h:mm A")
+            time
         })
-    })
+    });
 });
 
-server.listen(PORT, () => console.log(`server is running ${PORT}`));
+server.listen(5000, () => console.log(`server is running 5000`));
