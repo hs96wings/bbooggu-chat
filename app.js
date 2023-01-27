@@ -4,10 +4,13 @@ const path = require('path')
 const socketIO = require('socket.io')
 const moment = require('moment')
 const nunjucks = require('nunjucks')
+const fs = require('fs')
 
 const { sequelize, Chat } = require('./models');
+const indexRouter = require('./routes/index');
 const chatRouter = require('./routes/chat');
 const imageRouter = require('./routes/image');
+const multer = require('multer')
 
 require('moment-timezone')
 moment.tz.setDefault('Asia/Seoul');
@@ -32,6 +35,7 @@ app.use(express.static(path.join(__dirname, "src")))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use('/', indexRouter);
 app.use('/chat', chatRouter);
 app.use('/image', imageRouter);
 
@@ -79,4 +83,20 @@ io.on("connection", (socket) => {
     });
 });
 
-server.listen(5000, () => console.log(`server is running 5000`));
+server.listen(5000, () => {
+    const dir = "./uploads";
+    if (!fs.existsSync(dir))
+        fs.mkdirSync(dir);
+    console.log('서버 실행');
+});
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads')
+    },
+    filename: function(req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now())
+    }
+});
+
+const upload = multer({ storage: storage});

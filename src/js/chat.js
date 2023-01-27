@@ -6,6 +6,7 @@ const nickname = document.querySelector("#nickname")
 const chatList = document.querySelector(".chatting-list")
 const chatInput = document.querySelector(".chatting-input")
 const sendButton = document.querySelector(".send-button")
+const sendImage = document.querySelector(".send-image")
 const displayContainer = document.querySelector(".display-container");
 
 chatInput.addEventListener("keypress", (event) => {
@@ -26,6 +27,10 @@ function send() {
 sendButton.addEventListener("click", () => {
     send();
 })
+
+sendImage.addEventListener("click", () => {
+    
+});
 socket.on("chatting", (data) => {
     const { name, msg, time } = data;
     const item = new LiModel(name, msg, time);
