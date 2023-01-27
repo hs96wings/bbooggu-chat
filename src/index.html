@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>뿌요미들 임시 대화방</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="user-container">
+            <label for="nickname">대화명</label>
+            <input type="text" id="nickname">
+        </div>
+        <div class="display-container">
+            <ul class="chatting-list">
+                <li class="received">
+                    <span class="profile">
+                            <span class="user">기술뿌요미</span>
+                    </span>
+                    <span class="message">스쉽, 푸슝에 문제 생겼을 때 쓰는 임시 채팅방</span>
+                    <span class="time">3:30 AM</span>
+                </li>
+                <li class="sent">
+                    <span class="profile">
+                            <span class="user">기술뿌요미</span>
+                    </span>
+                    <span class="message">대화 저장이 안되니까 켜놔야해요</span>
+                    <span class="time">3:30 PM</span>
+                    </li>
+                    <li class="received">
+                        <span class="profile">
+                                <span class="user">기술뿌요미</span>
+                        </span>
+                        <span class="message">URL은 http://bbooggu.shop로 등록했는데</span>
+                        <span class="time">3:30 AM</span>
+                    </li>
+                    <li class="sent">
+                        <span class="profile">
+                                <span class="user">기술뿌요미</span>
+                        </span>
+                        <span class="message">적용하는데 하루 걸려서 아직 안돼요</span>
+                        <span class="time">3:30 PM</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="input-container">
+                    <span>
+                        <input type="text" class="chatting-input">
+                        <button class="send-button">전송</button>
+                    </span>
+
+            </div>
+        </div>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/js/chat.js"></script>
+    </body>
+</html>                                        

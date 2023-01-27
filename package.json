@@ -1,0 +1,25 @@
+{
+  "name": "bbooggu-chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hs96wings/bbooggu-chat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hs96wings/bbooggu-chat/issues"
+  },
+  "homepage": "https://github.com/hs96wings/bbooggu-chat#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "moment": "^2.29.4",
+    "moment-timezone": "^0.5.40",
+    "socket.io": "^4.5.4"
+  }
+}
