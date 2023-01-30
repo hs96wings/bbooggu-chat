@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>뿌요미들 임시 대화방</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <div class="wrapper">
@@ -43,6 +43,17 @@
                         <span class="message">적용하는데 하루 걸려서 아직 안돼요</span>
                         <span class="time">3:30 PM</span>
                     </li>
+                    {% if chats %}
+                        {% for chat in chats %}
+                        <li class="received">
+                            <span class="profile">
+                                <span class="user">{{chat.name}}</span>
+                            </span>
+                            <span class="message">{{chat.msg}}</span>
+                            <span class="time">{{chat.time}}</span>
+                        </li>
+                        {% endfor %}
+                    {% endif %}
                 </ul>
             </div>
             <div class="input-container">
@@ -54,7 +65,7 @@
 
             </div>
         </div>
-        <script src="/socket.io/socket.io.js"></script>
+        <script src="../socket.io/socket.io.js"></script>
         <script src="/js/chat.js"></script>
     </body>
 </html>                                        

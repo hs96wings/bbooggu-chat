@@ -3,18 +3,19 @@ const sequelize = require('sequelize');
 const Chat = require('../models').Chat;
 const router = express.Router();
 
-router.get('/', async (req, res, next) => {
+router.get('/', async (req, res) => {
     let result = await Chat.findAll({
-        limit: 50,
+        limit: 6,
         order: [
             ['id', 'DESC'],
         ]
     });
 
     if (result) {
-        res.render('chat', {chats: result, title: '이전 대화 목록'});
+        result = result.reverse();
+        res.render('index', {chats: result});
     } else {
-        res.render('error', {message: '데이터를 불러오는 데 실패했습니다'});
+        res.render('index');
     }
 
 });
