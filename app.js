@@ -35,7 +35,7 @@ sequelize.sync({ force: false })
 app.use(express.static(path.join(__dirname, "public")))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(favicon(path.join(__dirname, 'src', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 app.use('/', indexRouter);
 app.use('/chat', chatRouter);
@@ -64,6 +64,10 @@ io.on("connection", (socket) => {
             name = '뿌요미';
         if (msg === undefined || msg == null || msg == '')
             msg = '뿌꾸 사랑해';
+        
+        if (name.length > 10) {
+            name = name.substr(0, 10);
+        }
 
         Chat.create({
             name,
