@@ -69,6 +69,18 @@ io.on("connection", (socket) => {
             name = name.substr(0, 10);
         }
 
+        const reg = /<[^>]*>?/g
+        name = name.replace(reg, '');
+        msg = msg.replace(reg, '');
+
+        if (name.indexOf('>_') !== -1) {
+            name = name.replace('>_', '>_<');
+        }
+
+        if (msg.indexOf('>_') !== -1) {
+            msg = msg.replace('>_', '>_<');
+        }
+
         Chat.create({
             name,
             msg,

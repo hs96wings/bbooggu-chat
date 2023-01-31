@@ -7,7 +7,7 @@ const chatList = document.querySelector(".chatting-list")
 const chatInput = document.querySelector(".chatting-input")
 const sendButton = document.querySelector(".send-button")
 const sendImage = document.querySelector(".send-image")
-const displayContainer = document.querySelector(".display-container");
+const displayContainer = document.querySelector(".display-container")
 
 chatInput.addEventListener("keypress", (event) => {
     if (event.keyCode === 13) {
@@ -31,6 +31,7 @@ sendButton.addEventListener("click", () => {
 sendImage.addEventListener("click", () => {
     
 });
+
 socket.on("chatting", (data) => {
     const { name, msg, time } = data;
     const item = new LiModel(name, msg, time);
