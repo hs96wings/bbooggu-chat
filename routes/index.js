@@ -17,7 +17,6 @@ router.get('/', async (req, res) => {
     } else {
         res.render('index');
     }
-
 });
 
 module.exports = router;

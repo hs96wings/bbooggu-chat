@@ -57,12 +57,13 @@ app.use((err, req, res, next) => {
 })
 
 io.on("connection", (socket) => {
+    // chat
     socket.on("chatting", (data) => {
         var { name, msg } = data;
-        const userAgent = socket.handshake.headers['user-agent'];
-        console.log(userAgent);
+        /* 유저 정보 수집
         const clientIP = socket.request.connection.remoteAddress;
-        console.log(clientIP);
+        const userAgent = socket.handshake.headers['user-agent'];
+        */
         const time = moment(new Date()).format("h:mm A");
         
         if (name === undefined || name == null || name == '')
@@ -104,6 +105,11 @@ io.on("connection", (socket) => {
             time
         })
     });
+
+    // image
+    socket.on('image', (data) => {
+        console.log(data);
+    })
 });
 
 server.listen(5000, () => {
