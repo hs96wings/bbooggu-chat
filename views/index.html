@@ -10,8 +10,8 @@
     <div class="wrapper">
         <div class="user-container">
             <!-- <label for="nickname">대화명</label> -->
-            <input type="text" id="nickname" placeholder="대화명">
             <a href="/chat" class="preview">이전 대화 보기</a>
+            <input type="text" id="nickname" placeholder="대화명">
             <div class="box">
                 <input type="checkbox" class="chat-lock" id="inpLock">
                 <label class="btn-lock" for="inpLock">
@@ -60,7 +60,8 @@
                         </form>
                         이미지
                     </label>
-                    <input type="text" class="chatting-input">
+                    <textarea class="chatting-input" maxlength="255" rows="1"></textarea>
+                    <!-- <input type="text" class="chatting-input"> -->
                     <button class="send-button">전송</button>
                 </span>
             </div>
