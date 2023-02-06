@@ -15,34 +15,18 @@
         </div>
         <div class="display-container">
             <ul class="chatting-list">
-                <li class="received">
-                    <span class="profile">
-                            <span class="user">기술뿌요미</span>
-                    </span>
-                    <span class="message">스쉽, 푸슝에 문제 생겼을 때 쓰는 임시 채팅방</span>
-                    <span class="time">3:30 AM</span>
-                </li>
                 <li class="sent">
                     <span class="profile">
-                            <span class="user">기술뿌요미</span>
+                        <span class="user">기술뿌요미</span>
                     </span>
-                    <span class="message">대화 저장이 안되니까 켜놔야해요</span>
-                    <span class="time">3:30 PM</span>
-                    </li>
-                    <li class="received">
-                        <span class="profile">
-                                <span class="user">기술뿌요미</span>
-                        </span>
-                        <span class="message">URL은 http://bbooggu.shop로 등록했는데</span>
-                        <span class="time">3:30 AM</span>
-                    </li>
-                    <li class="sent">
-                        <span class="profile">
-                                <span class="user">기술뿌요미</span>
-                        </span>
-                        <span class="message">적용하는데 하루 걸려서 아직 안돼요</span>
-                        <span class="time">3:30 PM</span>
-                    </li>
+                    <span class="message">
+                        스쉽, 푸슝 터졌을때 쓰는 대피소<br>
+                        마지막 대화 내용 나오게 표시해놓음&nbsp;
+                        <a href="https://spacesheep.co.kr/home/ask/a2d43f50-52dd-44d4-9e98-098df008679a">(스쉽가기)</a>&nbsp;
+                        <a href="https://pushoong.com/ask/7481752065">(푸슝가기)</a>
+                    </span>
+                    <span class="time">3:30 AM</span>
+                </li>
                     {% if chats %}
                         {% for chat in chats %}
                         <li class="received">
@@ -57,12 +41,16 @@
                 </ul>
             </div>
             <div class="input-container">
-                    <span>
-                        <button class="send-image">이미지</button>
-                        <input type="text" class="chatting-input">
-                        <button class="send-button">전송</button>
-                    </span>
-
+                <span>
+                    <label role="button" class="send-image">
+                        <form id="form-image" hidden>
+                            <input class="input-image" type="file" accept="image/*" hidden>
+                        </form>
+                        이미지
+                    </label>
+                    <input type="text" class="chatting-input">
+                    <button class="send-button">전송</button>
+                </span>
             </div>
         </div>
         <script src="../socket.io/socket.io.js"></script>

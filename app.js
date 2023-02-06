@@ -5,6 +5,7 @@ const socketIO = require('socket.io')
 const moment = require('moment')
 const nunjucks = require('nunjucks')
 const favicon = require('serve-favicon')
+const requestIP = require('request-ip');
 const fs = require('fs')
 
 const { sequelize, Chat } = require('./models');
@@ -58,6 +59,10 @@ app.use((err, req, res, next) => {
 io.on("connection", (socket) => {
     socket.on("chatting", (data) => {
         var { name, msg } = data;
+        const userAgent = socket.handshake.headers['user-agent'];
+        console.log(userAgent);
+        const clientIP = socket.request.connection.remoteAddress;
+        console.log(clientIP);
         const time = moment(new Date()).format("h:mm A");
         
         if (name === undefined || name == null || name == '')
