@@ -12,6 +12,8 @@ const { sequelize, Chat } = require('./models');
 const indexRouter = require('./routes/index');
 const chatRouter = require('./routes/chat');
 const imageRouter = require('./routes/image');
+const infoRouter = require('./routes/info')
+const momentRouter = require('./routes/moment');
 const multer = require('multer')
 
 require('moment-timezone')
@@ -41,6 +43,8 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use('/', indexRouter);
 app.use('/chat', chatRouter);
 app.use('/image', imageRouter);
+app.use('/info', infoRouter);
+app.use('/moment', momentRouter);
 
 app.use((req, res, next) => {
     const error = new Error(`${req.method} ${req.url} X`);

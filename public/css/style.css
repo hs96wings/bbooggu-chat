@@ -41,6 +41,12 @@ html, body {
     overflow-y: scroll;
 }
 
+.button-container {
+  display: flex;
+  justify-content: stretch;
+  align-items: center;;
+}
+
 .input-container {
     flex: 1;
     display: flex;
@@ -130,10 +136,19 @@ html, body {
 .preview {
     background-color: #b2c7d9;
     color: #fff;
-    padding: 15px 25px;
+    padding: 15px 5px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
+}
+
+.moment {
+  background-color: #b2c7d9;
+  color: #fff;
+  padding: 15px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
 }
 
 /*Input styles*/
