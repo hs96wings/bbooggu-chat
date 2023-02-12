@@ -32,6 +32,7 @@
     "sequelize": "^6.28.0",
     "serve-favicon": "^2.5.0",
     "sharp": "^0.31.3",
-    "socket.io": "^4.5.4"
+    "socket.io": "^4.5.4",
+    "socketio-file-upload": "^0.7.3"
   }
 }

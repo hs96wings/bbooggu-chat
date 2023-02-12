@@ -73,6 +73,7 @@ html, body {
     overflow-y: hidden;
     overflow-wrap: break-word;
     height: 55px;
+    resize: none;
 }
 
 .send-image {

@@ -18,9 +18,19 @@ chatInput.addEventListener("keypress", (event) => {
 })
 
 function send() {
+    /** 230212 긴급 필터링 추가 */
+    let m = chatInput.value;
+    m = m.trim()
+    m = m.replace('녹음', 'ㄴㅇ').replace('녹화', 'ㄴㅎ')
+    m = m.replace('염병', '❤️');
+    m = m.replace('ㅅㅂ', '💙');
+    m = m.replace('시발', '💚');
+    m = m.replace('ㅈㄹ', '💛').replace('지랄', '💛');
+    m = m.replace('미친', '🧡').replace('ㅁㅊ', '🧡');
+
     const param = {
             name: nickname.value,
-            msg: chatInput.value
+            msg: m
     }
     socket.emit("chatting", param)
 }
@@ -34,12 +44,6 @@ inputImage.addEventListener("change", (e) => {
         return
     }
 
-    const formData = new FormData();
-    e.forEach(v => {
-        formData.append('file', v);
-    })
-
-    this.uploadImg({formData: formData})
 });
 
 socket.on('image', async image => {

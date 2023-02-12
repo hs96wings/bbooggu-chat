@@ -117,19 +117,5 @@ io.on("connection", (socket) => {
 });
 
 server.listen(5000, () => {
-    const dir = "./uploads";
-    if (!fs.existsSync(dir))
-        fs.mkdirSync(dir);
     console.log('서버 실행');
 });
-
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads')
-    },
-    filename: function(req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now())
-    }
-});
-
-const upload = multer({ storage: storage});
