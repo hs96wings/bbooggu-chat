@@ -106,8 +106,9 @@ dist
 # Ignore Folder
 config/
 
-# Ignore Public Image
+# Ignore Image
 images/
+uploads/
 
 # Ignore moment
 moment.*
