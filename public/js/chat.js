@@ -9,6 +9,10 @@ const inputImage = document.querySelector(".input-image");
 const displayContainer = document.querySelector(".display-container");
 const lockChat = document.querySelector(".chat-lock");
 
+window.onload = function () {
+  displayContainer.scrollTo(0, displayContainer.scrollHeight);
+};
+
 chatInput.addEventListener("keypress", (event) => {
   if (event.keyCode === 13) {
     send();

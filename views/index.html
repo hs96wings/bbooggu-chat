@@ -44,7 +44,7 @@
                 >(스쉽가기)</a
               >&nbsp;
               <a href="https://pushoong.com/ask/7481752065">(푸슝가기)</a>
-            </span
+            </span>
           </li>
           {% if chats %} {% for chat in chats %}
           <li class="received">
@@ -60,15 +60,19 @@
       </div>
       <div class="input-container">
         <span>
-          <label role="button" class="send-image">
-            <form id="form-image" hidden>
-              <input class="input-image" type="file" accept="image/*" hidden />
-            </form>
-            이미지
-          </label>
           <textarea class="chatting-input" maxlength="255" rows="1"></textarea>
           <!-- <input type="text" class="chatting-input"> -->
-          <button class="send-button">전송</button>
+          <div class="upload-container">
+            <div class="file-upload">
+              <label role="button" class="send-image">
+                <form id="form-image" hidden>
+                  <input class="input-image" type="file" accept="image/*" hidden />
+                </form>
+                이미지 업로드
+              </label>
+            </div>
+            <button class="send-button">전송</button>
+          </div>
         </span>
       </div>
     </div>
