@@ -2,7 +2,6 @@
 
 const socket = io();
 
-const nickname = document.querySelector("#nickname");
 const chatList = document.querySelector(".chatting-list");
 const chatInput = document.querySelector(".chatting-input");
 const sendButton = document.querySelector(".send-button");
@@ -29,7 +28,7 @@ function send() {
   m = m.replace("미친", "🧡").replace("ㅁㅊ", "🧡");
 
   const param = {
-    name: nickname.value,
+    name: "뿌요미",
     msg: m,
   };
   socket.emit("chatting", param);
@@ -47,7 +46,7 @@ inputImage.addEventListener("change", (e) => {
     console.log(res);
 
     const param = {
-      name: nickname.value,
+      name: "뿌요미",
       img: res.data.img,
     };
     socket.emit("imaging", param);
@@ -79,12 +78,10 @@ function LiModel(name, msg, time) {
 
   this.makeLi = () => {
     const li = document.createElement("li");
-    li.classList.add(nickname.value === this.name ? "sent" : "received");
-    const dom = `<span class="profile">
-            <span class="user">${this.name}</span>
-            </span>
-            <span class="message">${this.msg}</span>
-        <span class="time">${this.time}</span>`;
+    li.classList.add("received");
+    const dom = `
+            <span class="time">${this.time}</span>
+            <span class="message">${this.msg}</span>`;
     li.innerHTML = dom;
     chatList.appendChild(li);
   };
@@ -97,12 +94,9 @@ function ImgModel(name, img, time) {
 
   this.makeLi = () => {
     const li = document.createElement("li");
-    li.classList.add(nickname.value === this.name ? "sent" : "received");
-    const dom = `<span class="profile">
-          <span class="user">${this.name}</span>
-          </span>
-          <span class="img-message"><img src="/${this.img}" /></span>
-          <span class="time">${this.time}</span>`;
+    li.classList.add("received");
+    const dom = `<span class="time">${this.time}</span>
+      <span class="img-message"><img src="/${this.img}" /></span>`;
     li.innerHTML = dom;
     chatList.appendChild(li);
   };

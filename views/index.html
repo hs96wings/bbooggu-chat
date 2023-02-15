@@ -9,12 +9,10 @@
   <body>
     <div class="wrapper">
       <div class="user-container">
-        <!-- <label for="nickname">대화명</label> -->
         <div class="button-container">
           <a href="/chat" class="preview">이전 대화</a>
           <a href="/moment" class="moment">모멘트 백업</a>
         </div>
-        <input type="text" id="nickname" placeholder="대화명" />
         <div class="box">
           <input type="checkbox" class="chat-lock" id="inpLock" />
           <label class="btn-lock" for="inpLock">
@@ -37,9 +35,7 @@
       <div class="display-container">
         <ul class="chatting-list">
           <li class="sent">
-            <!-- <span class="profile">
-              <span class="user">기술뿌요미</span>
-            </span> -->
+            <span class="time">3:30 AM</span>
             <span class="message">
               스쉽, 푸슝 터졌을때 쓰는 대피소<br />
               마지막 대화 내용 나오게 표시해놓음&nbsp;
@@ -48,21 +44,16 @@
                 >(스쉽가기)</a
               >&nbsp;
               <a href="https://pushoong.com/ask/7481752065">(푸슝가기)</a>
-            </span>
-            <span class="time">3:30 AM</span>
+            </span
           </li>
           {% if chats %} {% for chat in chats %}
           <li class="received">
-            <!-- <span class="profile">
-              <span class="user">{{chat.name}}</span>
-            </span> -->
             <span class="time">{{chat.time}}</span>
             {% if chat.msg %}
             <span class="message">{{chat.msg}}</span>
             {% else %}
             <span class="img-message"><img src="\{{chat.img}}" /></span>
             {% endif %}
-            <!-- <span class="time">{{chat.time}}</span> -->
           </li>
           {% endfor %} {% endif %}
         </ul>
