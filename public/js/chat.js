@@ -43,15 +43,24 @@ sendButton.addEventListener("click", () => {
 inputImage.addEventListener("change", (e) => {
   const formData = new FormData();
   formData.append("img", inputImage.files[0]);
-  axios
-    .post("/img", formData)
-    .then((res) => console.log(res))
-    .catch((error) => console.error(error));
+  axios.post("/img", formData).then((res) => {
+    console.log(res);
+
+    const param = {
+      name: nickname.value,
+      img: res.data.img,
+    };
+    socket.emit("imaging", param);
+  });
 });
 
-socket.on("image", async (image) => {
-  const buffer = Buffer.from(image);
-  await fs.writeFile("/uploads", buffer).catch(console.error);
+socket.on("imaging", async (data) => {
+  const { name, img, time } = data;
+  const item = new ImgModel(name, img, time);
+  item.makeLi();
+
+  if (lockChat.checked === false)
+    displayContainer.scrollTo(0, displayContainer.scrollHeight);
 });
 
 socket.on("chatting", (data) => {
@@ -81,4 +90,21 @@ function LiModel(name, msg, time) {
   };
 }
 
+function ImgModel(name, img, time) {
+  this.name = name;
+  this.img = img;
+  this.time = time;
+
+  this.makeLi = () => {
+    const li = document.createElement("li");
+    li.classList.add(nickname.value === this.name ? "sent" : "received");
+    const dom = `<span class="profile">
+          <span class="user">${this.name}</span>
+          </span>
+          <span class="img-message"><img src="/${this.img}" /></span>
+          <span class="time">${this.time}</span>`;
+    li.innerHTML = dom;
+    chatList.appendChild(li);
+  };
+}
 console.log(socket);

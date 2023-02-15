@@ -37,9 +37,9 @@
       <div class="display-container">
         <ul class="chatting-list">
           <li class="sent">
-            <span class="profile">
+            <!-- <span class="profile">
               <span class="user">기술뿌요미</span>
-            </span>
+            </span> -->
             <span class="message">
               스쉽, 푸슝 터졌을때 쓰는 대피소<br />
               마지막 대화 내용 나오게 표시해놓음&nbsp;
@@ -53,15 +53,16 @@
           </li>
           {% if chats %} {% for chat in chats %}
           <li class="received">
-            <span class="profile">
+            <!-- <span class="profile">
               <span class="user">{{chat.name}}</span>
-            </span>
+            </span> -->
+            <span class="time">{{chat.time}}</span>
             {% if chat.msg %}
             <span class="message">{{chat.msg}}</span>
             {% else %}
             <span class="img-message"><img src="\{{chat.img}}" /></span>
             {% endif %}
-            <span class="time">{{chat.time}}</span>
+            <!-- <span class="time">{{chat.time}}</span> -->
           </li>
           {% endfor %} {% endif %}
         </ul>

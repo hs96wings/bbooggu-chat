@@ -42,7 +42,6 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/img", upload.single("img"), async (req, res) => {
-  console.log(req.file);
   try {
     const chat = await Chat.create({
       name: "뿌요미",
@@ -50,7 +49,7 @@ router.post("/img", upload.single("img"), async (req, res) => {
       time: moment(new Date()).format("h:mm A"),
     });
 
-    res.redirect("/");
+    res.json({ img: req.file.path });
   } catch (error) {
     console.log(error);
   }
