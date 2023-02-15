@@ -62,40 +62,22 @@ app.use((err, req, res, next) => {
   res.render("error");
 });
 
-function regexInfo(name, msg) {
-  if (name === undefined || name == null || name == "") name = "뿌요미";
-  if (msg === undefined || msg == null || msg == "") msg = "뿌꾸 사랑해";
-
-  if (name.length > 10) {
-    name = name.substr(0, 10);
-  }
-
-  const reg = /<[^>]*>?/g;
-  name = name.replace(reg, "");
-  msg = msg.replace(reg, "");
-
-  if (name.indexOf(">_") !== -1) {
-    name = name.replace(">_", ">_<");
-  }
-
-  if (msg.indexOf(">_") !== -1) {
-    msg = msg.replace(">_", ">_<");
-  }
-
-  return { name: name, msg: msg };
-}
-
 io.on("connection", (socket) => {
   // chat
   socket.on("chatting", (data) => {
-    var { name, msg } = data;
-    const t = regexInfo(name, msg);
-    name = t.name;
-    msg = t.msg;
+    let { msg } = data;
     const time = moment(new Date()).format("h:mm A");
 
+    if (msg === undefined || msg == null || msg == "") msg = "뿌꾸 사랑해";
+
+    const reg = /<[^>]*>?/g;
+    msg = msg.replace(reg, "");
+
+    if (msg.indexOf(">_") !== -1) {
+      msg = msg.replace(">_", ">_<");
+    }
+
     Chat.create({
-      name,
       msg,
       time,
     })
@@ -107,7 +89,6 @@ io.on("connection", (socket) => {
       });
 
     io.emit("chatting", {
-      name,
       msg,
       time,
     });
@@ -115,13 +96,10 @@ io.on("connection", (socket) => {
 
   // image
   socket.on("imaging", (data) => {
-    var { name, img } = data;
-    const t = regexInfo(name, "");
-    name = t.name;
+    let { img } = data;
     const time = moment(new Date()).format("h:mm A");
 
     io.emit("imaging", {
-      name,
       img,
       time,
     });

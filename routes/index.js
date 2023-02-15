@@ -29,7 +29,7 @@ const upload = multer({
 
 router.get("/", async (req, res) => {
   let result = await Chat.findAll({
-    limit: 6,
+    limit: 10,
     order: [["id", "DESC"]],
   });
 
@@ -44,10 +44,15 @@ router.get("/", async (req, res) => {
 router.post("/img", upload.single("img"), async (req, res) => {
   try {
     const chat = await Chat.create({
-      name: "뿌요미",
       img: req.file.path,
       time: moment(new Date()).format("h:mm A"),
-    });
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
 
     res.json({ img: req.file.path });
   } catch (error) {

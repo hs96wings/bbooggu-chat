@@ -28,7 +28,6 @@ function send() {
   m = m.replace("미친", "🧡").replace("ㅁㅊ", "🧡");
 
   const param = {
-    name: "뿌요미",
     msg: m,
   };
   socket.emit("chatting", param);
@@ -46,7 +45,6 @@ inputImage.addEventListener("change", (e) => {
     console.log(res);
 
     const param = {
-      name: "뿌요미",
       img: res.data.img,
     };
     socket.emit("imaging", param);
@@ -54,8 +52,8 @@ inputImage.addEventListener("change", (e) => {
 });
 
 socket.on("imaging", async (data) => {
-  const { name, img, time } = data;
-  const item = new ImgModel(name, img, time);
+  const { img, time } = data;
+  const item = new ImgModel(img, time);
   item.makeLi();
 
   if (lockChat.checked === false)
@@ -63,16 +61,15 @@ socket.on("imaging", async (data) => {
 });
 
 socket.on("chatting", (data) => {
-  const { name, msg, time } = data;
-  const item = new LiModel(name, msg, time);
+  const { msg, time } = data;
+  const item = new LiModel(msg, time);
   item.makeLi();
 
   if (lockChat.checked === false)
     displayContainer.scrollTo(0, displayContainer.scrollHeight);
 });
 
-function LiModel(name, msg, time) {
-  this.name = name;
+function LiModel(msg, time) {
   this.msg = msg;
   this.time = time;
 
@@ -87,8 +84,7 @@ function LiModel(name, msg, time) {
   };
 }
 
-function ImgModel(name, img, time) {
-  this.name = name;
+function ImgModel(img, time) {
   this.img = img;
   this.time = time;
 

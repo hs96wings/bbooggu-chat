@@ -4,10 +4,6 @@ class Chat extends Sequelize.Model {
   static initiate(sequelize) {
     Chat.init(
       {
-        name: {
-          type: Sequelize.STRING,
-          allowNull: false,
-        },
         msg: {
           type: Sequelize.TEXT,
         },
