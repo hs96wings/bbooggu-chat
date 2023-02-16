@@ -5,25 +5,35 @@ const socketIO = require("socket.io");
 const moment = require("moment");
 const nunjucks = require("nunjucks");
 const favicon = require("serve-favicon");
-const requestIP = require("request-ip");
-const fs = require("fs");
+const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const dotenv = require('dotenv');
+// const requestIP = require("request-ip");
+const passport = require('passport');
+const flash = require('express-flash');
 
 const { sequelize, Chat } = require("./models");
+const passportConfig = require('./passport');
 const indexRouter = require("./routes/index");
 const chatRouter = require("./routes/chat");
 const imageRouter = require("./routes/image");
 const infoRouter = require("./routes/info");
 const momentRouter = require("./routes/moment");
-const multer = require("multer");
+const adminRouter = require('./routes/admin');
+const authRouter = require('./routes/auth')
 
 require("moment-timezone");
 moment.tz.setDefault("Asia/Seoul");
 
+dotenv.config();
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
+passportConfig();
 app.set("port", process.env.PORT || 5000);
 app.set("view engine", "html");
+app.use(morgan('dev'));
 nunjucks.configure("views", {
   express: app,
   watch: true,
@@ -39,7 +49,21 @@ sequelize
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(session({
+  resave: false,
+  saveUninitialized: false,
+  secret: process.env.COOKIE_SECRET,
+  cookie: {
+    httpOnly: true,
+    secure: false,
+  },
+  name: 'session-cookie',
+}));
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use("/", indexRouter);
 app.use("/uploads", express.static("./uploads"));
@@ -47,6 +71,8 @@ app.use("/chat", chatRouter);
 app.use("/image", imageRouter);
 app.use("/info", infoRouter);
 app.use("/moment", momentRouter);
+app.use('/admin', adminRouter);
+app.use('/auth', authRouter);
 
 app.use((req, res, next) => {
   const error = new Error(`${req.method} ${req.url} X`);

@@ -1,5 +1,5 @@
-const path = require('path')
 const Chat = require('./chat');
+const User = require('./user');
 const Sequelize = require('sequelize')
 
 const env = process.env.NODE_ENV || 'development';
@@ -19,9 +19,11 @@ const sequelize = new Sequelize(
 );
 
 db.Chat = Chat;
+db.User = User;
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 Chat.initiate(sequelize);
+User.initiate(sequelize);
 
 module.exports = db;

@@ -1,4 +1,11 @@
 <script>
-  alert("잘못된 접근입니다");
+  const urlParams = new URL(location.href).searchParams;
+  const loginError = urlParams.get('loginError');
+
+  if (loginError) {
+    alert(loginError);
+  } else {
+    alert('잘못된 접근입니다');
+  }
   window.location.href = "/";
 </script>

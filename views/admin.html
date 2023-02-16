@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      .wrapper {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .a-container {
+        background: #a9bdce;
+        flex: 1;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0.5rem;
+      }
+
+      .chat-container {
+        background: #b2c7d9;
+        flex: 12;
+        overflow-y: scroll;
+      }
+
+      table {
+        border-collapse: separate;
+        border-spacing: 0;
+        width: 100%;
+      }
+
+      td {
+        padding: 6px 15px;
+        border-right: 1px solid #c6c9cc;
+        border-bottom: 1px solid #c6c9cc;
+        border-radius: 4px;
+        font-size: 12px;
+      }
+
+      .home {
+        text-decoration: none;
+      }
+
+      a:link,
+      a:visited {
+        background-color: #b2c7d9;
+        color: #fff;
+        padding: 15px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+      }
+      a:hover,
+      a:active {
+        background-color: #b2c7d9;
+      }
+
+      .message {
+        background: #fff;
+        border-radius: 5px;
+        padding: 0.5rem;
+        font-size: 12px;
+        margin: 0 5px;
+        flex: 7;
+      }
+
+      .img-message {
+        background: #fff;
+        border-radius: 5px;
+        padding: 0.5rem;
+        font-size: 12px;
+        margin: 0 5px;
+        flex: 7;
+      }
+
+      img {
+        width: 200px;
+        height: 150px;
+        object-fit: contain;
+      }
+
+      form {
+        flex:1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="a-container">
+        <a href="/">돌아가기</a>
+      </div>
+      <div class="chat-container">
+        {% if chats %}
+        <table>
+          {% for chat in chats %}
+          <tr>
+            <td>{{chat.id}}</td>
+            {% if chat.msg %}
+            <td class="message">{{chat.msg}}</td>
+            {% else %}
+            <td class="img-message"><img src="/{{chat.img}}" /></td>
+            {% endif %}
+            <td>{{chat.time}}</td>
+            <td>
+              <form method="post">
+                <input type="submit" value="삭제" formaction="/admin/delete/{{chat.id}}">
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+        {% else %}
+        {{message}}
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>
