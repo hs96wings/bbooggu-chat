@@ -35,6 +35,13 @@ body {
   background: #b2c7d9;
   flex: 12;
   overflow-y: scroll;
+
+  -ms-overflow-style: none; /* IE */
+  scrollbar-width: none; /* FireFox */
+}
+
+.display-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera, Edge */
 }
 
 .button-container {
