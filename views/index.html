@@ -10,6 +10,9 @@
     <div class="wrapper">
       <div class="user-container">
         <div class="button-container">
+          {% if user %}
+          <a href="/admin/manage" class="manage">관리하기</a>
+          {% endif %}
           <a href="/chat" class="preview">이전 대화</a>
           <a href="/moment" class="moment">모멘트 백업</a>
         </div>

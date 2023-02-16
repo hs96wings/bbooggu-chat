@@ -35,7 +35,7 @@ router.get("/", async (req, res) => {
 
   if (result) {
     result = result.reverse();
-    res.render("index", { chats: result });
+    res.render("index", { chats: result, user: req.user });
   } else {
     res.render("index");
   }

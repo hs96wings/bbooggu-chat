@@ -145,22 +145,14 @@ img {
   background: #fff;
 }
 
-.preview {
+.manage, .preview, .moment{
   background-color: #b2c7d9;
   color: #fff;
   padding: 15px 5px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-}
-
-.moment {
-  background-color: #b2c7d9;
-  color: #fff;
-  padding: 15px 5px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
+  margin: 2px;
 }
 
 /*Input styles*/
