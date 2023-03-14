@@ -112,3 +112,5 @@ uploads/
 
 # Ignore moment
 moment.*
+
+config.json

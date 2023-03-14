@@ -53,7 +53,7 @@
           <li class="received">
             <span class="time">{{chat.time}}</span>
             {% if chat.msg %}
-            <span class="message">{{chat.msg}}</span>
+            <span class="message">{{chat.msg | safe}}</span>
             {% else %}
             <span class="img-message"><img src="\{{chat.img}}" /></span>
             {% endif %}

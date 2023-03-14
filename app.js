@@ -99,8 +99,15 @@ io.on("connection", (socket) => {
     const reg = /<[^>]*>?/g;
     msg = msg.replace(reg, "");
 
-    if (msg.indexOf(">_") !== -1) {
-      msg = msg.replace(">_", ">_<");
+    const urlReg = /(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
+    let urlTmp = msg.match(urlReg);
+    if (urlTmp != null) {
+      for (url of urlTmp) {
+        if (url.indexOf('http') == -1)
+          msg = msg.replace(url, '<a href="https://' + url + '">' + url + '</a>');
+        else
+          msg = msg.replace(url, '<a href="' + url + '">' + url + '</a>');
+      }
     }
 
     Chat.create({

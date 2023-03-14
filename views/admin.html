@@ -111,7 +111,7 @@
           <tr>
             <td>{{chat.id}}</td>
             {% if chat.msg %}
-            <td class="message">{{chat.msg}}</td>
+            <td class="message">{{chat.msg | safe}}</td>
             {% else %}
             <td class="img-message"><img src="/{{chat.img}}" /></td>
             {% endif %}
