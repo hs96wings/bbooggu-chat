@@ -9,6 +9,8 @@ const inputImage = document.querySelector(".input-image");
 const displayContainer = document.querySelector(".display-container");
 const lockChat = document.querySelector(".chat-lock");
 const alertInfo = document.querySelector(".info");
+const moreChat = document.querySelector(".more-chat");
+const moreChatId = document.querySelector(".chat-id");
 
 window.onload = function () {
   displayContainer.scrollTo(0, displayContainer.scrollHeight);
@@ -56,6 +58,42 @@ sendButton.addEventListener("click", () => {
   chatInput.value = "";
 });
 
+moreChat.addEventListener("click", () => {
+  let id = moreChatId.value;
+  
+  if (id > 20) {
+    $.ajax({
+      type: 'POST',
+      url: '/more',
+      data: JSON.stringify({
+        'id': id,
+      }),
+      dataType: 'json',
+      contentType: "application/json; charset=utf-8",
+      error: function(req, status, err) {
+        console.error(err);
+      },
+      success: function(result) {
+        for (let i = 0; i < 10; i++) {
+          var li = document.createElement("li");
+          if (result["result"][i]["msg"] == null) {
+            var dom = '<span class="time">' + result["result"][i]["time"] + '</span>'
+            + '<span class="img-message"><img src="/' + result["result"][i]["img"] + '" /></span>';
+          } else {
+            var dom = '<span class="time">' + result["result"][i]["time"] + '</span>'
+            + '<span class="message">' + result["result"][i]["msg"] + '</span>';
+          }
+          li.innerHTML = dom;
+          chatList.insertBefore(li, chatList.firstChild);
+        }
+        moreChatId.value -= 10;
+      }
+    }); 
+  }
+
+  displayContainer.scrollTo(0, 0);
+})
+
 inputImage.addEventListener("change", (e) => {
   const formData = new FormData();
   formData.append("img", inputImage.files[0]);
@@ -93,7 +131,6 @@ function LiModel(msg, time) {
 
   this.makeLi = () => {
     const li = document.createElement("li");
-    li.classList.add("received");
     const dom = `
             <span class="time">${this.time}</span>
             <span class="message">${this.msg}</span>`;
@@ -108,7 +145,6 @@ function ImgModel(img, time) {
 
   this.makeLi = () => {
     const li = document.createElement("li");
-    li.classList.add("received");
     const dom = `<span class="time">${this.time}</span>
       <span class="img-message"><img src="/${this.img}" /></span>`;
     li.innerHTML = dom;

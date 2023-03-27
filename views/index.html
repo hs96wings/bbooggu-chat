@@ -6,10 +6,13 @@
     <title>뿌요미 대피소</title>
     <link rel="stylesheet" href="/css/style.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   </head>
   <body>
     <div class="wrapper">
-      <input type="checkbox" class="chat-lock" id="inpLock" />
+      <input type="checkbox" class="chat-lock" />
+      <input type="button" class="more-chat" value="U" />
+      <input type="hidden" class="chat-id" value="{{id}}" />
       <div class="top-container">
         <div class="button-container">
           {% if user %}

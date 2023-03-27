@@ -4,6 +4,7 @@ const path = require("path");
 const fs = require("fs");
 const moment = require("moment");
 const sequelize = require("sequelize");
+const { Op } = require("sequelize");
 const Chat = require("../models").Chat;
 const router = express.Router();
 
@@ -35,7 +36,8 @@ router.get("/", async (req, res) => {
 
   if (result) {
     result = result.reverse();
-    res.render("index", { chats: result, user: req.user });
+    let id = result[0].dataValues.id
+    res.render("index", { chats: result, user: req.user, id: id});
   } else {
     res.render("index");
   }
@@ -59,5 +61,20 @@ router.post("/img", upload.single("img"), async (req, res) => {
     console.log(error);
   }
 });
+
+router.post("/more", async(req, res) => {
+  let chatId = parseInt(req.body.id);
+  let result = await Chat.findAll({
+    limit: 10,
+    order: [["id", "DESC"]],
+    where: {
+      id: {[Op.lt]: chatId},
+    }
+  });
+
+  if (result) {
+    res.send({result: result});
+  }
+})
 
 module.exports = router;

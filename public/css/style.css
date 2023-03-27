@@ -28,6 +28,18 @@ body {
   z-index: 1000;
 }
 
+.more-chat {
+  text-decoration: none;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  position: fixed;
+  top: 140px;
+  left: 10px;
+  z-index: 1000;
+}
+
 .top-container {
   background: #edeff2;
   height: 60px;
