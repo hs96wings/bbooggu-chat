@@ -91,7 +91,6 @@ body {
   overflow-wrap: break-word;
   padding: 10px 20px;
   
-
   outline-style: solid;
   outline-color: white;
   outline-width: 1px;
@@ -127,14 +126,14 @@ img {
   list-style: none;
   border-radius: 5px;
   padding: 0.5rem;
-  font-size: 12px;
+  font-size: 15px;
   margin: 0 5px;
 }
 
 .img-message {
   border-radius: 5px;
   padding: 0.5rem;
-  font-size: 12px;
+  font-size: 15px;
   margin: 0 5px;
 }
 
@@ -143,18 +142,14 @@ img {
   margin: 0 5px;
 }
 
-.message {
+.message, .img-message {
   background: #fff;
 }
 
-.img-message {
-  background: #fff;
-}
-
-.manage, .preview, .moment{
+.manage, .preview, .info {
   background-color: #F9FAFB;
   color: #000;
-  padding: 15px 5px;
+  padding: 5px 5px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -176,4 +171,5 @@ img {
   justify-content: center;
   padding: 4px;
   margin: 2px;
+  flex-direction: column;
 }

@@ -8,6 +8,7 @@ const sendButton = document.querySelector(".send-button");
 const inputImage = document.querySelector(".input-image");
 const displayContainer = document.querySelector(".display-container");
 const lockChat = document.querySelector(".chat-lock");
+const alertInfo = document.querySelector(".info");
 
 window.onload = function () {
   displayContainer.scrollTo(0, displayContainer.scrollHeight);
@@ -20,16 +21,29 @@ chatInput.addEventListener("keypress", (event) => {
   }
 });
 
+function sAlert() {
+  Swal.fire({
+    title: '뿌요미 대피소',
+    icon: 'info',
+    html: '스쉽 터지면 오세요<br>최종 업데이트: 2023-03-28',
+    footer: 'Made By&nbsp;<a href="https://twitter.com/bluenery1023">@bluenery1023</a>',
+    confirmButtonText: '닫기'
+  })
+}
+
+alertInfo.addEventListener("click", () => {
+  sAlert();
+})
+
 function send() {
-  /** 230212 긴급 필터링 추가 */
   let m = chatInput.value;
   m = m.trim();
-  m = m.replace("녹음", "ㄴㅇ").replace("녹화", "ㄴㅎ");
-  m = m.replace("염병", "❤️");
-  m = m.replace("ㅅㅂ", "💙");
-  m = m.replace("시발", "💚");
-  m = m.replace("ㅈㄹ", "💛").replace("지랄", "💛");
-  m = m.replace("미친", "🧡").replace("ㅁㅊ", "🧡");
+  m = m.replace(/ㅅㅂ/gi, '💜'); // purple
+  m = m.replace(/개새끼/gi, '💚'); // green
+  m = m.replace(/시발/gi, '💜'); // purple
+  m = m.replace(/병신/gi, '🧡'); // orange
+  m = m.replace(/ㅄ/gi, '🧡'); // orange
+  m = m.replace(/ㅂㅅ/gi, '🧡'); // orange
 
   const param = {
     msg: m,

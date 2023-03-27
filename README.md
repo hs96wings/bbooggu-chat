@@ -14,8 +14,11 @@
 - Socket.io
 - NginX
 
-#### [socket.io를 간단히 배운 곳](https://youtu.be/UoKoPP91Qx0)
+### 참고사항 
+- [socket.io를 간단히 배운 곳](https://youtu.be/UoKoPP91Qx0)
+- [이전 프로젝트 코드 참고](https://github.com/hs96wings/ontelier)
+- [커스텀 Alert](https://sweetalert2.github.io/)
+---
 
-#### [이전 프로젝트 코드 참고](https://github.com/hs96wings/ontelier)
-
-#### [채팅 스크롤 멈추는 CheckBox CSS](https://codepen.io/Zeldariam/pen/RwBoKQp)
+2023-03-28  
+CSS, HTML 정리: 쓰지 않는 CSS 선택자들 정리

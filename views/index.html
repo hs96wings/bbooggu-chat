@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>뿌요미들 임시 대화방</title>
+    <title>뿌요미 대피소</title>
     <link rel="stylesheet" href="/css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   </head>
   <body>
     <div class="wrapper">
@@ -14,10 +15,10 @@
           {% if user %}
           <a href="/admin/manage" class="manage">관리하기</a>
           {% endif %}
-          <a href="/chat" class="preview">이전 대화</a>
+          <a href="/chat" class="preview">이전대화</a>
         </div>
         <div><h3>뿌요미 대피소</h3></div>
-        <div><a href="/moment" class="moment">모멘트 백업</a></div>
+        <div class="info">ℹ️</div>
       </div>
       <div class="display-container">
         <ul class="chatting-list">
