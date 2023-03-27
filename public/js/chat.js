@@ -11,6 +11,7 @@ const lockChat = document.querySelector(".chat-lock");
 const alertInfo = document.querySelector(".info");
 const moreChat = document.querySelector(".more-chat");
 const moreChatId = document.querySelector(".chat-id");
+const alertUpdate = document.querySelector(".update");
 
 window.onload = function () {
   displayContainer.scrollTo(0, displayContainer.scrollHeight);
@@ -23,7 +24,7 @@ chatInput.addEventListener("keypress", (event) => {
   }
 });
 
-function sAlert() {
+function infoAlert() {
   Swal.fire({
     title: '뿌요미 대피소',
     icon: 'info',
@@ -34,7 +35,20 @@ function sAlert() {
 }
 
 alertInfo.addEventListener("click", () => {
-  sAlert();
+  infoAlert();
+})
+
+function updateAlert() {
+  Swal.fire({
+    title: '최근 업데이트 내역',
+    icon: 'success',
+    html: '230328 02:50 이전대화 불러오기<br>230328 01:50 커스텀 알림창<br>230328 00:50 난잡한 코드 정리',
+    confirmButtonText: '확인'
+  })
+}
+
+alertUpdate.addEventListener('click', () => {
+  updateAlert();
 })
 
 function send() {

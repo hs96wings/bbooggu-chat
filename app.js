@@ -16,10 +16,6 @@ const flash = require('express-flash');
 const { sequelize, Chat } = require("./models");
 const passportConfig = require('./passport');
 const indexRouter = require("./routes/index");
-const chatRouter = require("./routes/chat");
-const imageRouter = require("./routes/image");
-const infoRouter = require("./routes/info");
-const momentRouter = require("./routes/moment");
 const adminRouter = require('./routes/admin');
 const authRouter = require('./routes/auth')
 
@@ -67,10 +63,6 @@ app.use(passport.session());
 
 app.use("/", indexRouter);
 app.use("/uploads", express.static("./uploads"));
-app.use("/chat", chatRouter);
-app.use("/image", imageRouter);
-app.use("/info", infoRouter);
-app.use("/moment", momentRouter);
 app.use('/admin', adminRouter);
 app.use('/auth', authRouter);
 
