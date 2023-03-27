@@ -16,23 +16,33 @@ body {
   overflow: hidden;
 }
 
-.user-container {
-  background: #a9bdce;
+.chat-lock {
+  text-decoration: none;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  position: fixed;
+  top: 100px;
+  left: 10px;
+  z-index: 1000;
+}
+
+.top-container {
+  background: #edeff2;
+  height: 60px;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.75);
+
+  /* flex */
   flex: 1;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   padding: 0.5rem;
 }
 
-.user-container input {
-  border-radius: 3px;
-  border: none;
-  height: 100%;
-}
-
 .display-container {
-  background: #b2c7d9;
+  background: #e3e7ec;
   flex: 12;
   overflow-y: scroll;
 
@@ -50,33 +60,41 @@ body {
   align-items: center;
 }
 
-.input-container {
+.footer-container {
   flex: 1;
-  display: flex;
-  justify-content: stretch;
-  align-items: center;
-}
 
-.input-container span {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   padding: 0.3rem;
   width: 100%;
 }
 
+.submit-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
 .chatting-input {
-  font-size: large;
-  height: 100%;
-  flex: 15;
-  border: none;
-  border-radius: 3px;
-  display: block;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  overflow-wrap: break-word;
-  height: 55px;
+  margin-top: 1px;
+  margin-right: 10px;
   resize: none;
+  overflow: hidden;
+  font-size: large;
+  height: 80%;
+  flex: 12;
+  border: 1px solid white;
+  border-radius: 5px;
+  display: block;
+  overflow-wrap: break-word;
+  padding: 10px 20px;
+  
+
+  outline-style: solid;
+  outline-color: white;
+  outline-width: 1px;
 }
 
 img {
@@ -100,16 +118,13 @@ img {
   justify-content: flex-end;
   align-items: flex-end;
   margin-top: 0.5rem;
-}
-
-.profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  float: right;
 }
 
 .message {
+  clear: both;
+  transition: all 0.5s linear;
+  list-style: none;
   border-radius: 5px;
   padding: 0.5rem;
   font-size: 12px;
@@ -128,154 +143,30 @@ img {
   margin: 0 5px;
 }
 
-.sent {
-  float: right;
-}
-
-.received {
-  float: right;
-}
-
-.sent .message {
-  background: #ffeb33;
-}
-
-.send .img-message {
-  background: #ffeb33;
-}
-
-.received .message {
+.message {
   background: #fff;
 }
 
-.received .img-message {
+.img-message {
   background: #fff;
 }
 
 .manage, .preview, .moment{
-  background-color: #b2c7d9;
-  color: #fff;
+  background-color: #F9FAFB;
+  color: #000;
   padding: 15px 5px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   margin: 2px;
-}
-
-/*Input styles*/
-.btn-lock {
-  position: relative;
-  top: calc(50% - 32px);
-  left: calc(50% - 32px);
-  display: inline-block;
-  background: #ff5b5b;
-  width: 64px;
-  height: 64px;
-  box-sizing: border-box;
-  padding: 12px 0 0 18px;
-  border-radius: 50%;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.btn-lock svg {
-  fill: none;
-  transform: translate3d(0, 0, 0);
-}
-
-.btn-lock svg .bling {
-  stroke: #fff;
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  stroke-dasharray: 3;
-  stroke-dashoffset: 15;
-  transition: all 0.3s ease;
-}
-
-.btn-lock svg .lock {
-  stroke: #fff;
-  stroke-width: 4;
-  stroke-linejoin: round;
-  stroke-linecap: round;
-  stroke-dasharray: 36;
-  transition: all 0.4s ease;
-}
-
-.btn-lock svg .lockb {
-  fill: #fff;
-  fill-rule: evenodd;
-  clip-rule: evenodd;
-  transform: rotate(8deg);
-  transform-origin: 14px 20px;
-  transition: all 0.2s ease;
-}
-
-#inpLock {
-  display: none;
-}
-
-#inpLock:checked + label {
-  background: #20cca5;
-}
-
-#inpLock:checked + label svg {
-  opacity: 1;
-}
-
-#inpLock:checked + label svg .bling {
-  animation: bling6132 0.3s linear forwards;
-  animation-delay: 0.2s;
-}
-
-#inpLock:checked + label svg .lock {
-  stroke-dasharray: 48;
-  animation: locked 0.3s linear forwards;
-}
-
-#inpLock:checked + label svg .lockb {
-  transform: rotate(0);
-  transform-origin: 14px 22px;
-}
-
-@keyframes bling6132 {
-  50% {
-    stroke-dasharray: 3;
-    stroke-dashoffset: 12;
-  }
-
-  100% {
-    stroke-dasharray: 3;
-    stroke-dashoffset: 9;
-  }
-}
-
-@keyframes locked {
-  50% {
-    transform: translateY(1px);
-  }
-}
-
-.file-upload {
-  width: 80px;
-  height: 50px;
-  background: #63afe9;
-  border: 1px solid rgb(77,77,77);
   border-radius: 10px;
-  font-weight: 500;
-  cursor: pointer;
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  padding: 4px;
-  margin: 2px;
 }
 
-.send-button {
-  width: 80px;
-  height: 50px;
-  background: yellow;
-  border: 1px solid rgb(77,77,77);
+.submit-container div {
+  width: 100px;
+  height: 100%;
+  background: white;
+  border: 1px solid black;
   border-radius: 10px;
   font-weight: 500;
   cursor: pointer;

@@ -109,8 +109,7 @@ config/
 # Ignore Image
 images/
 uploads/
+config/
 
 # Ignore moment
 moment.*
-
-config.json
