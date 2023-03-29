@@ -77,4 +77,12 @@ router.post("/more", async(req, res) => {
   }
 })
 
+router.get('/moment', async (req, res) => {
+  res.render('moment.html');
+})
+
+router.post("/moment/add", async(req, res) => {
+  res.send({result: 'success'});
+})
+
 module.exports = router;
