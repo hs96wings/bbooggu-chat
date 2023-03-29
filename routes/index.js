@@ -6,6 +6,7 @@ const moment = require("moment");
 const sequelize = require("sequelize");
 const { Op } = require("sequelize");
 const Chat = require("../models").Chat;
+const Moment = require('../models').Moment;
 const router = express.Router();
 
 try {
@@ -82,7 +83,34 @@ router.get('/moment', async (req, res) => {
 })
 
 router.post("/moment/add", async(req, res) => {
-  res.send({result: 'success'});
+  let id = parseInt(req.body.id);
+  let msg_result = await Chat.findOne({
+    where: {
+      id: id
+    }
+  });
+
+  if (msg_result) {
+    let {msg, img, time} = msg_result;
+
+    let moment_result = await Moment.findOne({
+      where: {
+        [Op.and]: [{msg: msg}, {img: img}]
+      }
+    });
+
+    // Moment가 없는 경우
+    if (!moment_result) {
+      await Moment.create({
+        msg: msg,
+        img: img,
+        time: time
+      });
+
+      res.send({result: 'success'});
+    }
+  }
+
 })
 
 module.exports = router;

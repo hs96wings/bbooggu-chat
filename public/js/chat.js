@@ -186,7 +186,25 @@ $(() => {
         callback: (itemKey, opt) => {
           var id = opt.$trigger.attr("id");
           addMoment(id);
-          return false;
+
+          return true;
+        }
+      }
+    }
+  })
+
+  $.contextMenu({
+    selector: '.img-message',
+    trigger: 'right',
+    items: {
+      name: {
+        name: "모먼트에 추가",
+        type: null,
+        callback: (itemKey, opt) => {
+          var id = opt.$trigger.attr("id");
+          addMoment(id);
+
+          return true;
         }
       }
     }
@@ -197,9 +215,9 @@ function addMoment(id) {
   $.ajax({
     type: 'POST',
     url: '/moment/add',
-    data: JSON.stringify({
+    data: {
       'id': id,
-    }),
+    },
     error: function(req, status, err) {
       console.error(err);
     },

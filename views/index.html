@@ -39,7 +39,7 @@
             {% if chat.msg %}
             <span class="message" id="{{chat.id}}">{{chat.msg | safe}}</span>
             {% else %}
-            <span class="img-message"><img src="\{{chat.img}}" /></span>
+            <span class="img-message" id="{{chat.id}}"><img src="\{{chat.img}}" /></span>
             {% endif %}
           </li>
           {% endfor %} {% endif %}
