@@ -11,7 +11,8 @@ const lockChat = document.querySelector(".chat-lock");
 const alertInfo = document.querySelector(".info");
 const moreChat = document.querySelector(".more-chat");
 const moreChatId = document.querySelector(".chat-id");
-const alertUpdate = document.querySelector(".update");
+const alertMoment = document.querySelector(".moment");
+const msgs = document.querySelectorAll(".message");
 
 window.onload = function () {
   displayContainer.scrollTo(0, displayContainer.scrollHeight);
@@ -38,17 +39,17 @@ alertInfo.addEventListener("click", () => {
   infoAlert();
 })
 
-function updateAlert() {
+function momentAlert() {
   Swal.fire({
-    title: '최근 업데이트 내역',
-    icon: 'success',
-    html: '230328 02:50 이전대화 불러오기<br>230328 01:50 커스텀 알림창<br>230328 00:50 난잡한 코드 정리',
+    title: '업데이트 준비 중',
+    icon: 'warning',
+    html: 'Moment 기능 구현 중입니다...<br>만들지 않을 수도 있음',
     confirmButtonText: '확인'
   })
 }
 
-alertUpdate.addEventListener('click', () => {
-  updateAlert();
+alertMoment.addEventListener('click', () => {
+  momentAlert();
 })
 
 function send() {
@@ -165,4 +166,9 @@ function ImgModel(img, time) {
     chatList.appendChild(li);
   };
 }
-console.log(socket);
+
+msgs.forEach((msg) => {
+  msg.addEventListener('contextmenu', (e) => {
+    console.log('right click');
+  })
+})

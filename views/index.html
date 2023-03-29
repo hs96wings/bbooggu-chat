@@ -18,10 +18,10 @@
           {% if user %}
           <a href="/admin/manage" class="manage">관리하기</a>
           {% endif %}
-          <div class="update">✅</div>
+          <div class="info">ℹ️</div>
         </div>
         <div><h3>뿌요미 대피소</h3></div>
-        <div class="info">ℹ️</div>
+        <div class="moment">Ⓜ️</div>
       </div>
       <div class="display-container">
         <ul class="chatting-list">
@@ -31,7 +31,7 @@
             </span>
           </li>
           {% if chats %} {% for chat in chats %}
-          <li>
+          <li class="msg-container">
             <span class="time">{{chat.time}}</span>
             {% if chat.msg %}
             <span class="message">{{chat.msg | safe}}</span>
