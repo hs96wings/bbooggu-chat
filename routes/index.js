@@ -79,7 +79,15 @@ router.post("/more", async(req, res) => {
 })
 
 router.get('/moment', async (req, res) => {
-  res.render('moment.html');
+  let result = await Moment.findAll({
+    order: [["id", "DESC"]],
+  });
+
+  if (result) {
+    res.render("moment", { chats: result, user: req.user});
+  } else {
+    res.redirect('/');
+  }
 })
 
 router.post("/moment/add", async(req, res) => {

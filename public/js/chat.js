@@ -11,8 +11,6 @@ const lockChat = document.querySelector(".chat-lock");
 const alertInfo = document.querySelector(".info");
 const moreChat = document.querySelector(".more-chat");
 const moreChatId = document.querySelector(".chat-id");
-const alertMoment = document.querySelector(".moment");
-const msgs = document.querySelectorAll(".message");
 
 window.onload = function () {
   displayContainer.scrollTo(0, displayContainer.scrollHeight);
@@ -37,19 +35,6 @@ function infoAlert() {
 
 alertInfo.addEventListener("click", () => {
   infoAlert();
-})
-
-function momentAlert() {
-  Swal.fire({
-    title: '업데이트 준비 중',
-    icon: 'warning',
-    html: 'Moment 기능 구현 중입니다...<br>만들지 않을 수도 있음',
-    confirmButtonText: '확인'
-  })
-}
-
-alertMoment.addEventListener('click', () => {
-  momentAlert();
 })
 
 function send() {
@@ -166,13 +151,6 @@ function ImgModel(img, time) {
     chatList.appendChild(li);
   };
 }
-
-// msgs.forEach((msg) => {
-//   msg.addEventListener('contextmenu', (e) => {
-//     e.preventDefault();
-//     alert('hi!');
-//   })
-// })
 
 $(() => {
   /* Right Click */
