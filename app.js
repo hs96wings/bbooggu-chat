@@ -82,6 +82,7 @@ app.use((err, req, res, next) => {
 io.on("connection", (socket) => {
   const req = socket.request;
   const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  
   // chat
   socket.on("chatting", (data) => {
     let { msg } = data;
