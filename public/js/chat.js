@@ -9,6 +9,7 @@ const inputImage = document.querySelector(".input-image");
 const displayContainer = document.querySelector(".display-container");
 const lockChat = document.querySelector(".chat-lock");
 const alertInfo = document.querySelector(".info");
+const alertUpdate = document.querySelector('.update');
 const moreChat = document.querySelector(".more-chat");
 const moreChatId = document.querySelector(".chat-id");
 
@@ -35,6 +36,18 @@ function infoAlert() {
 
 alertInfo.addEventListener("click", () => {
   infoAlert();
+})
+
+function updateAlert() {
+  Swal.fire({
+    icon: 'error',
+    html: '범죄 예방을 목적으로 본 사이트는<br>IP 주소를 수집하고 있습니다',
+    confirmButtonText: '확인'
+  })
+}
+
+alertUpdate.addEventListener('click', () => {
+  updateAlert();
 })
 
 function send() {
