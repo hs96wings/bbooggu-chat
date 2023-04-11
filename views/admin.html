@@ -121,6 +121,11 @@
                 <input type="submit" value="삭제" formaction="/admin/delete/{{chat.id}}">
               </form>
             </td>
+            <td>
+              <form action="post">
+                <input type="submit" value="차단" formaction="/admin/block?ip={{chat.ip}}">
+              </form>
+            </td>
           </tr>
           {% endfor %}
         </table>

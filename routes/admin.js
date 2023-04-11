@@ -1,6 +1,7 @@
 const express = require('express')
 const sequelize = require("sequelize");
 const Chat = require("../models").Chat;
+const Black = require('../models').Black;
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 
 const router = express.Router();
@@ -32,6 +33,17 @@ router.post('/delete/:id', isLoggedIn, async (req, res, next) => {
         await Chat.destroy({ where: { id: req.params.id }});
     } catch (error) {
         req.flash('error', 'id가 잘못되었습니다');
+    }
+    res.redirect('/admin/manage');
+})
+
+router.post('/block/:ip', isLoggedIn, async (req, res, next) => {
+    const blackList = Black.create({ black: req.params.ip });
+
+    if (blackList) {
+        req.flash('success', 'ip가 차단되었습니다');
+    } else {
+        req.flash('error', 'ip가 잘못되었습니다');
     }
     res.redirect('/admin/manage');
 })
