@@ -1,6 +1,7 @@
 const Chat = require('./chat');
 const User = require('./user');
 const Moment = require('./moment');
+const Black = require('./black');
 const Sequelize = require('sequelize')
 
 const env = process.env.NODE_ENV || 'development';
@@ -22,11 +23,13 @@ const sequelize = new Sequelize(
 db.Chat = Chat;
 db.User = User;
 db.Moment = Moment;
+db.Black = Black;
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 Chat.initiate(sequelize);
 User.initiate(sequelize);
 Moment.initiate(sequelize);
+Black.initiate(sequelize);
 
 module.exports = db;

@@ -7,6 +7,7 @@ const sequelize = require("sequelize");
 const { Op } = require("sequelize");
 const Chat = require("../models").Chat;
 const Moment = require('../models').Moment;
+const Black = require('../models').Black;
 const router = express.Router();
 
 try {
@@ -30,17 +31,28 @@ const upload = multer({
 });
 
 router.get("/", async (req, res) => {
-  let result = await Chat.findAll({
-    limit: 10,
-    order: [["id", "DESC"]],
+  let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  let blackList = await Black.findOne({
+    where: {
+      black: {[Op.like]: ip}
+    }
   });
-
-  if (result) {
-    result = result.reverse();
-    let id = result[0].dataValues.id
-    res.render("index", { chats: result, user: req.user, id: id});
+  
+  if (blackList) {
+    res.status(401).end();
   } else {
-    res.render("index");
+    let result = await Chat.findAll({
+      limit: 10,
+      order: [["id", "DESC"]],
+    });
+  
+    if (result) {
+      result = result.reverse();
+      let id = result[0].dataValues.id
+      res.render("index", { chats: result, user: req.user, id: id});
+    } else {
+      res.render("index");
+    }
   }
 });
 
