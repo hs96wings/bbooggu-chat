@@ -23,7 +23,6 @@
         <ul class="chatting-list">
           {% if chats %} {% for chat in chats %}
           <li class="msg-container">
-            <span class="time">{{chat.time}}</span>
             {% if chat.msg %}
             <span class="message" id="{{chat.id}}">{{chat.msg | safe}}</span>
             {% else %}

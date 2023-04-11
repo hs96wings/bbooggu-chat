@@ -9,7 +9,6 @@ const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const dotenv = require('dotenv');
-// const requestIP = require("request-ip");
 const passport = require('passport');
 const flash = require('express-flash');
 
@@ -81,10 +80,12 @@ app.use((err, req, res, next) => {
 });
 
 io.on("connection", (socket) => {
+  const req = socket.request;
+  const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
   // chat
   socket.on("chatting", (data) => {
     let { msg } = data;
-    const time = moment(new Date()).format("h:mm A");
+    const time = moment(new Date()).format("MM월 DD일 h:mm A");
 
     if (msg === undefined || msg == null || msg == "") msg = "뿌꾸 사랑해";
 
@@ -104,7 +105,8 @@ io.on("connection", (socket) => {
 
     Chat.create({
       msg,
-      time,
+      ip,
+      time
     })
       .then((result) => {
         console.log(result);
@@ -122,11 +124,12 @@ io.on("connection", (socket) => {
   // image
   socket.on("imaging", (data) => {
     let { img } = data;
-    const time = moment(new Date()).format("h:mm A");
+    const time = moment(new Date()).format("MM월 DD일 h:mm A");
 
     io.emit("imaging", {
       img,
-      time,
+      ip,
+      time
     });
   });
 });

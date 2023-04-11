@@ -55,13 +55,15 @@
   }
   
   .chatting-list li {
-    width: 90%;
+    width: 400px;
     padding: 0.3rem;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
     margin-top: 0.5rem;
-    float: right;
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(400px, auto));
+    
+    grid-auto-flow: dense;
+    border: 1px solid red;
   }
   
   .message {
