@@ -122,8 +122,10 @@
               </form>
             </td>
             <td>
-              <form action="post">
-                <input type="submit" value="차단" formaction="/admin/block?ip={{chat.ip}}">
+              <form method="post">
+                <input type="hidden" value="{{chat.ip}}" name="ip">
+                <input type="hidden" value="{{chat.sid}}" name="sid">
+                <input type="submit" value="차단" formaction="/admin/block">
               </form>
             </td>
           </tr>

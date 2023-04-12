@@ -37,14 +37,25 @@ router.post('/delete/:id', isLoggedIn, async (req, res, next) => {
     res.redirect('/admin/manage');
 })
 
-router.post('/block/:ip', isLoggedIn, async (req, res, next) => {
-    const blackList = Black.create({ black: req.params.ip });
+router.post('/block', isLoggedIn, async (req, res, next) => {
+    const ip = req.body.ip;
+    const sid = req.body.sid;
+    const io = req.app.get('io');
+    const addBlack = Black.create({ black: ip });
 
-    if (blackList) {
+    console.log(ip);
+    console.log(sid);
+    if (addBlack) {
         req.flash('success', 'ip가 차단되었습니다');
     } else {
-        req.flash('error', 'ip가 잘못되었습니다');
+        req.flash('error', '유효하지 않은 ip입니다');
     }
+
+    io.sockets.sockets.forEach((socket) => {
+        if (socket.id == sid)
+            socket.disconnect(true);
+    });
+    
     res.redirect('/admin/manage');
 })
 

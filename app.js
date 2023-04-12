@@ -25,6 +25,7 @@ dotenv.config();
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
+app.set('io', io); // router -> app.get('io').~
 passportConfig();
 app.set("port", process.env.PORT || 5000);
 app.set("view engine", "html");
@@ -81,6 +82,7 @@ app.use((err, req, res, next) => {
 
 io.on("connection", (socket) => {
   const req = socket.request;
+  const sid = socket.id;
   const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
   
   // chat
@@ -107,6 +109,7 @@ io.on("connection", (socket) => {
     Chat.create({
       msg,
       ip,
+      sid,
       time
     })
       .then((result) => {
@@ -130,6 +133,7 @@ io.on("connection", (socket) => {
     io.emit("imaging", {
       img,
       ip,
+      sid,
       time
     });
   });

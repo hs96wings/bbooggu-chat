@@ -14,6 +14,10 @@ class Chat extends Sequelize.Model {
           type: Sequelize.STRING(20),
           allowNull: false,
         },
+        sid: {
+          type: Sequelize.STRING(20),
+          allowNull: false,
+        },
         time: {
           type: Sequelize.STRING(40),
           allowNull: false,

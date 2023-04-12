@@ -138,6 +138,10 @@ socket.on("chatting", (data) => {
     displayContainer.scrollTo(0, displayContainer.scrollHeight);
 });
 
+socket.on('disconnect', () => {
+  location.reload();
+})
+
 function LiModel(msg, time) {
   this.msg = msg;
   this.time = time;
