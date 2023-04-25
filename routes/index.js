@@ -57,9 +57,14 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/img", upload.single("img"), async (req, res) => {
+  const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  const sid = 'image upload';
+
   try {
     const chat = await Chat.create({
       img: req.file.path,
+      ip: ip,
+      sid: sid,
       time: moment(new Date()).format("h:mm A"),
     })
       .then((res) => {
