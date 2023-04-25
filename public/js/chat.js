@@ -91,10 +91,10 @@ moreChat.addEventListener("click", () => {
           var li = document.createElement("li");
           if (result["result"][i]["msg"] == null) {
             var dom = '<span class="time">' + result["result"][i]["time"] + '</span>'
-            + '<span class="img-message"><img src="/' + result["result"][i]["img"] + '" /></span>';
+            + '<span class="img-message" id='+ result["result"][i]["id"] +'><img src="/' + result["result"][i]["img"] + '" /></span>';
           } else {
             var dom = '<span class="time">' + result["result"][i]["time"] + '</span>'
-            + '<span class="message">' + result["result"][i]["msg"] + '</span>';
+            + '<span class="message" id=' + result["result"][i]["id"] + '>' + result["result"][i]["msg"] + '</span>';
           }
           li.innerHTML = dom;
           chatList.insertBefore(li, chatList.firstChild);
