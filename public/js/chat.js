@@ -111,6 +111,10 @@ moreChat.addEventListener("click", () => {
 
 inputImage.addEventListener("change", (e) => {
   const formData = new FormData();
+  const type = inputImage.files[0].type;
+
+  if (!type.includes('image')) return;
+
   formData.append("img", inputImage.files[0]);
   axios.post("/img", formData).then((res) => {
     console.log(res);
