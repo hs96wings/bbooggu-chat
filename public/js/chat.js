@@ -60,6 +60,8 @@ function send() {
   m = m.replace(/ㅄ/gi, '🧡'); // orange
   m = m.replace(/ㅂㅅ/gi, '🧡'); // orange
 
+  if (m === undefined || m == null || m == "") return;
+
   const param = {
     msg: m,
   };

@@ -90,7 +90,7 @@ io.on("connection", (socket) => {
     let { msg } = data;
     const time = moment(new Date()).format("MM월 DD일 h:mm A");
 
-    if (msg === undefined || msg == null || msg == "") msg = "뿌꾸 사랑해";
+    if (msg === undefined || msg == null || msg == "") return;
 
     const reg = /<[^>]*>?/g;
     msg = msg.replace(reg, "");
